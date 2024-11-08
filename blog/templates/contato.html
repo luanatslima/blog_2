@@ -2,35 +2,35 @@
 {% load static %}
 
 {% block header %}
-        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/contact-bg.jpg')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="page-heading">
-                            <h1>Contato</h1>
-                            <span class="subheading">Dúvidas? Eu tenho as respostas.</span>
-                        </div>
+<!-- Page Header-->
+    <header class="masthead" style="background-image: url('assets/img/contact-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>Contato</h1>
+                        <span class="subheading">Dúvidas? Eu tenho as respostas.</span>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
 {% endblock header %}
 
 {% block content %}
-        <!-- Main Content-->
+    <!-- Main Content-->
         <main class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p>Quer entrar em contato? Mande uma mensagem.</p>
+                        <p>Quer entrar em contato? Envie uma mensagem.</p>
                         <div class="my-5">
                             <form id="contactForm" method="POST">
                                 {% csrf_token %}
                                 <div class="form-floating">
-                                    <input class="form-control" id="nome" name="nome" type="text" placeholder="Digite seu nome..." data-sb-validations="required" />
+                                    <input class="form-control {% if erro %}is-invalid{% endif%}" id="nome" name="nome" type="text" placeholder="Digite seu nome..." required />
                                     <label for="name">Nome</label>
-                                    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                    <div class="invalid-feedback">A nome é obrigatório</div>
                                 </div>
                                 <div class="form-floating">
                                     <input class="form-control" id="email" name="email" type="email" placeholder="Digite seu email..." data-sb-validations="required,email" />
@@ -42,6 +42,11 @@
                                     <input class="form-control" id="telefone" name="telefone" type="tel" placeholder="Digite seu telefone..." data-sb-validations="required" />
                                     <label for="phone">Telefone</label>
                                     <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <input class="form-control" id="cidade" name="cidade" type="cidade" placeholder="Digite sua cidade..." data-sb-validations="required" />
+                                    <label for="cidade">Cidade</label>
+                                    <div class="invalid-feedback" data-sb-feedback="cidade:required">A city is required.</div>
                                 </div>
                                 <div class="form-floating">
                                     <textarea class="form-control" id="mensagem" name="mensagem" placeholder="Digite sua mensagem..." style="height: 12rem" data-sb-validations="required"></textarea>
@@ -73,15 +78,15 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </main> 
         
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 {% endblock content %}
