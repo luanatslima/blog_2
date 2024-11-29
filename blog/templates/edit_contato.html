@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('assets/img/contact-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Editar Contato</h1>
+                    <span class="subheading">Dúvidas? Eu tenho respostas. Mas escreva direito dessa vez.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block content %}
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <p>Quer entrar em contato? Envie-me uma mensagem e responderei assim que possível!</p>
+                <div class="my-5">
+                    <form id="contactForm" method="POST">
+                        {% csrf_token %}
+                            <div class="form-floating">
+                                <input class="form-control {% if erro.nome %}is-invalid{% endif %}" id="name" name="nome" type="text" placeholder="Digite seu nome..." value="{{ mensagem.nome }}"/>
+                                <label for="name">Nome</label>
+                                <div class="invalid-feedback">O nome é obrigatório.</div>
+                            </div>
+                            <div class="form-floating">
+                                <input class="form-control {% if erro.email %}is-invalid{% endif %}" id="email" name="email" type="email" placeholder="Digite seu email..." value="{{ mensagem.email}}" />
+                                <label for="email">Endereço de email</label>
+                                <div class="invalid-feedback">Email é obrigatório.</div>
+                            </div>
+                            <div class="form-floating">
+                                <input class="form-control {% if erro.telefone %}is-invalid{% endif %}" id="phone" type="tel" name="telefone" placeholder="Digite seu telefone..." value="{{ mensagem.telefone }}" />
+                                <label for="phone">Telefone</label>
+                                <div class="invalid-feedback">O telefone é obrigatório.</div>
+                            </div>
+                            <div class="form-floating">
+                                <input class="form-control" id="cidade" type="cidade" name="cidade" placeholder="Digite sua cidade..." value="{{ mensagem.cidade }}" />
+                                <label for="cidade">Cidade</label>
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control {% if erro.mensagem %}is-invalid{% endif %}" id="message" name="mensagem" placeholder="Digite sua mensagem aqui..." style="height: 12rem">{{ mensagem.mensagem }}</textarea>
+                                <label for="message">Mensagem</label>
+                                <div class="invalid-feedback">A mensagem é obrigatória.</div>
+                            </div>
+                        </div>
+                        <br />
+                        <!-- Submit success message-->
+                        <!---->
+                        <!-- This is what your users will see when the form-->
+                        <!-- has successfully submitted-->
+                        <div class="d-none" id="submitSuccessMessage">
+                            <div class="text-center mb-3">
+                                <div class="fw-bolder">Form submission successful!</div>
+                                To activate this form, sign up at
+                                <br />
+                                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                            </div>
+                        </div>
+                        <!-- Submit error message-->
+                        <!---->
+                        <!-- This is what your users will see when there is-->
+                        <!-- an error submitting the form-->
+                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                        <!-- Submit Button-->
+                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
