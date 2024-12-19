@@ -27,29 +27,18 @@ def contato(request):
     context = {
         "blog": Blog.objects.first(),
     }   
-    if request.method == "POST":
-        print(request.POST['nome'])
-        print(request.POST['email'])
-        print(request.POST['telefone'])
-        print(request.POST['mensagem'])
-        print(request.POST['cidade'])
-
+    
     if request.method == "POST":
         form = MensagemForm(request.POST)
         if form.is_valid():
-            mensagem = Mensagem(
-                nome = form.cleaned_data["nome"],
-                email = form.cleaned_data["email"],
-                telefone = form.cleaned_data["telefone"],
-                mensagem = form.cleaned_data["mensagem"],
-                cidade = form.cleaned_data["cidade"],
-            )
-            mensagem.save()
-        return redirect('mensagens')
-    
+            form.save()
+            return redirect('mensagens')
+        else: 
+            context["form"] - form # esse é o form com os erros
+
     else:
         context["form"] = MensagemForm()
-        return render(request, "contato.html", context)
+    return render(request, "contato.html", context)
     
 def mensagens(request):
     context = {
