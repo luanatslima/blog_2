@@ -27,9 +27,7 @@
                         <div class="my-5">
                             <form id="contactForm" method="POST">
                                 {% csrf_token %}
-                                {{ form | crispy }}
-                                <!-- Submit Button-->
-                                <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Enviar</button>
+                                {% crispy form %}
                             </form>
                         </div>
                     </div>
